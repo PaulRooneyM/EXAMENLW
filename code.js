@@ -2,6 +2,7 @@ const POKE_API_BASE_URL = 'https://pokeapi.co/api/v2/'
 const allPokemons = {};
 let team = [];
 window.onload = async function() {
+    showTeam();
     const pokemonsKanto = await getAllPokemonKanto();
     const ulPokeList = document.getElementById('poke-list');
     for(const pokemon of pokemonsKanto){ 
@@ -9,6 +10,8 @@ window.onload = async function() {
         pokeItem.textContent = pokemon.name;
         const addButton = document.createElement('button');
         addButton.textContent = 'Afegir a equip';
+        pokeItem.appendChild(addButton);
+        addButton.addEventListener('click', () => addToTeam(pokemon));
         pokeItem.addEventListener('click', () => showPokemonDetails(pokemon.name));
         ulPokeList.appendChild(pokeItem);
     }
@@ -95,3 +98,24 @@ async function searchPokemon(form){
 }
 */
 
+function addToTeam(pokemon) {
+    showTeam();
+    if (team.length < 6) {
+        team.push(pokemon);
+        alert(`${pokemon.name} afegit a l'equip!`);
+        console.log('Equip actual:', team);
+    } else {
+        alert('Equip ja te 6 Pokemons. No es poden afegir mes.');
+    }
+}
+
+function showTeam() {
+    const teamContainer = document.getElementById('team-details');
+    teamContainer.innerHTML = `<h3>Equip actual</h3>`; 
+    if (team.length === 0) {
+        teamContainer.innerHTML += '<p>No hi ha Pokemon en equip.</p>';
+        return;
+    }
+    
+
+}
