@@ -7,6 +7,8 @@ window.onload = async function() {
     for(const pokemon of pokemonsKanto){ 
         const pokeItem = document.createElement('li');
         pokeItem.textContent = pokemon.name;
+        const addButton = document.createElement('button');
+        addButton.textContent = 'Afegir a equip';
         pokeItem.addEventListener('click', () => showPokemonDetails(pokemon.name));
         ulPokeList.appendChild(pokeItem);
     }
@@ -25,6 +27,10 @@ async function getAllPokemonKanto(){
 async function getPokemonDetails(pokemonName){
     const response = await fetch(`${POKE_API_BASE_URL}pokemon/${pokemonName}`);
     const jsonResponse = await response.json();
+    if (!response.ok) {
+        return null; 
+    }
+    console.log(jsonResponse);
     return jsonResponse;
 }
 
@@ -52,7 +58,7 @@ async function showPokemonDetails(pokemonName) {
     `;
 }
 /*
-function searchCharacter(form) {
+function searchPokemon(form) {
     const formElements = form.elements;                    
     searchformElement = formElements.search;               
     const PokemonName = searchformElement.value;
@@ -73,8 +79,19 @@ function searchCharacter(form) {
     return false;
 }
 */
+/*
+async function searchPokemon(form){
+    const formElements = form.elements;
+    const searchformElement = formElements.search;
+    const pokemonName = searchformElement.value
+    searchformElement.value = '';  
 
-async function searchCharacter(form){
-
-    
+    const pokemon = await getPokemonDetails(pokemonName);
+    if (!pokemon) {
+        alert('Pokémon no trobat');
+        return false;
+    }
+    return false;
 }
+*/
+
