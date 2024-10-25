@@ -26,3 +26,27 @@ async function getPokemonDetails(pokemonName){
     const jsonResponse = await response.json();
     return jsonResponse;
 }
+
+
+async function showPokemonDetails(pokemonName) {
+    const pokemonData = await getPokemonDetails(pokemonName);
+
+    const name = pokemonData.name;
+    const id = pokemonData.id;
+    const imageUrl = pokemonData.sprites.front_default 
+    let types = '';
+    for (let i = 0; i < pokemonData.types.length; i++) {
+        types += pokemonData.types[i].type.name;
+        if (i < pokemonData.types.length - 1) {
+            types += ', ';
+        }
+    }
+
+    const detailsContainer = document.getElementById('pokemon-details');
+    detailsContainer.innerHTML = `
+        <h2>${name}</h2>
+        <p><strong>ID:</strong> ${id}</p>
+        <img src="${imageUrl}" alt="${name}" width="200">
+        <p><strong>Types:</strong> ${types}</p>
+    `;
+}
