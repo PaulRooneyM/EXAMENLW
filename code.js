@@ -27,17 +27,6 @@ async function getAllPokemonKanto(){
 }
 
 
-async function getPokemonDetails(pokemonName){
-    const response = await fetch(`${POKE_API_BASE_URL}pokemon/${pokemonName}`);
-    const jsonResponse = await response.json();
-    if (!response.ok) {
-        return null; 
-    }
-    console.log(jsonResponse);
-    return jsonResponse;
-}
-
-
 async function showPokemonDetails(pokemonName) {
     const pokemonData = await getPokemonDetails(pokemonName);
 
@@ -102,3 +91,15 @@ function searchPokemon(form) {
     return false; 
 }
 
+
+
+
+async function getPokemonDetails(pokemonName) {
+    try {
+        const response = await fetch(`${POKE_API_BASE_URL}pokemon/${pokemonName}`);
+        const jsonResponse = await response.json();
+        return jsonResponse; 
+    } catch (error) {
+        return null; 
+    }
+}
