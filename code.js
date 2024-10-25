@@ -122,7 +122,7 @@ function showTeam() {
 
 }
 
-
+/*
 async function searchPokemon(form) {
     const formElements = form.elements;
     const searchformElement = formElements.search;
@@ -135,6 +135,33 @@ async function searchPokemon(form) {
         return;
     }
 
-    showPokemonDetails(pokemonName);
+    //showPokemonDetails(pokemonName);
     return false; 
+}*/
+/*
+function searchPokemon(form) {
+    const formElements = form.elements;                    
+    searchformElement = formElements.search;               
+    const PokemonName = searchformElement.value;
+    searchformElement.value = '';
+
+    getPokemonDetails(PokemonName).then( async (pokemon) => {
+        if (!pokemon) {
+            alert('Pokemon not found');
+            return;
+        }
+        showPokemonDetails(PokemonName);
+
+    });
+    return false;
+}*/
+
+function searchPokemon(form) {
+    const formElements = form.elements;
+    const searchformElement = formElements.search;               
+    const pokemonName = searchformElement.value;
+    searchformElement.value = '';  
+
+    showPokemonDetails(pokemonName);
+    return false;
 }
