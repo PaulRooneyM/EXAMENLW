@@ -1,5 +1,6 @@
 const POKE_API_BASE_URL = 'https://pokeapi.co/api/v2/'
 const allPokemons = {};
+let team = [];
 window.onload = async function() {
     const pokemonsKanto = await getAllPokemonKanto();
     const ulPokeList = document.getElementById('poke-list');
@@ -41,7 +42,6 @@ async function showPokemonDetails(pokemonName) {
             types += ', ';
         }
     }
-
     const detailsContainer = document.getElementById('pokemon-details');
     detailsContainer.innerHTML = `
         <h2>${name}</h2>
@@ -50,3 +50,12 @@ async function showPokemonDetails(pokemonName) {
         <p><strong>Types:</strong> ${types}</p>
     `;
 }
+
+function searchCharacter(form) {
+    const formElements = form.elements;                    
+    searchformElement = formElements.search;               
+    const PokemonName = searchformElement.value;
+    searchformElement.value = '';
+
+}
+
