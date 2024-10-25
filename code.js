@@ -42,6 +42,7 @@ async function showPokemonDetails(pokemonName) {
             types += ', ';
         }
     }
+
     const detailsContainer = document.getElementById('pokemon-details');
     detailsContainer.innerHTML = `
         <h2>${name}</h2>
@@ -50,12 +51,30 @@ async function showPokemonDetails(pokemonName) {
         <p><strong>Types:</strong> ${types}</p>
     `;
 }
-
+/*
 function searchCharacter(form) {
     const formElements = form.elements;                    
     searchformElement = formElements.search;               
     const PokemonName = searchformElement.value;
     searchformElement.value = '';
 
-}
+    getPokemonDetails(PokemonName).then( async (pokemon) => {
+        if (!pokemon) {
+            alert('Pokemon not found');
+            return;
+        }
+        const divCharacterInfo = document.getElementById('pokemon-details');
+        divCharacterInfo.innerHTML =`<h3>Informació del Pokémon</h3>
+            <p><strong>Nom:</strong> ${pokemon.name}</p>
+            <p><strong>ID:</strong> ${pokemon.id}</p>
+        `;
 
+    });
+    return false;
+}
+*/
+
+async function searchCharacter(form){
+
+    
+}
