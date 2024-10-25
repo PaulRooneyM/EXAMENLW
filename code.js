@@ -41,6 +41,11 @@ async function getPokemonDetails(pokemonName){
 async function showPokemonDetails(pokemonName) {
     const pokemonData = await getPokemonDetails(pokemonName);
 
+
+    if (!pokemonData) { 
+        alert('Pokémon no trobat!'); 
+        return; 
+    }
     const name = pokemonData.name;
     const id = pokemonData.id;
     const imageUrl = pokemonData.sprites.front_default 
@@ -87,31 +92,13 @@ function showTeam() {
 }
 
 
-
-function searchPokemon(form) {
-    const formElements = form.elements;                    
-    searchformElement = formElements.search;               
-    const PokemonName = searchformElement.value;
-    searchformElement.value = '';
-
-    getPokemonDetails(PokemonName).then( async (pokemon) => {
-        if (!pokemon.ok) {
-            alert('Pokemon not found');
-            return;
-        }
-        showPokemonDetails(PokemonName);
-
-    });
-    return false;
-}
-
-
 function searchPokemon(form) {
     const formElements = form.elements;
     const searchformElement = formElements.search;
-    const pokemonName = searchformElement.value.trim(); 
+    const pokemonName = searchformElement.value; 
     searchformElement.value = ''; 
 
     showPokemonDetails(pokemonName); 
     return false; 
 }
+
