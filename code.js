@@ -60,43 +60,7 @@ async function showPokemonDetails(pokemonName) {
         <p><strong>Types:</strong> ${types}</p>
     `;
 }
-/*
-function searchPokemon(form) {
-    const formElements = form.elements;                    
-    searchformElement = formElements.search;               
-    const PokemonName = searchformElement.value;
-    searchformElement.value = '';
 
-    getPokemonDetails(PokemonName).then( async (pokemon) => {
-        if (!pokemon) {
-            alert('Pokemon not found');
-            return;
-        }
-        const divCharacterInfo = document.getElementById('pokemon-details');
-        divCharacterInfo.innerHTML =`<h3>Informació del Pokémon</h3>
-            <p><strong>Nom:</strong> ${pokemon.name}</p>
-            <p><strong>ID:</strong> ${pokemon.id}</p>
-        `;
-
-    });
-    return false;
-}
-*/
-/*
-async function searchPokemon(form){
-    const formElements = form.elements;
-    const searchformElement = formElements.search;
-    const pokemonName = searchformElement.value
-    searchformElement.value = '';  
-
-    const pokemon = await getPokemonDetails(pokemonName);
-    if (!pokemon) {
-        alert('Pokémon no trobat');
-        return false;
-    }
-    return false;
-}
-*/
 
 function addToTeam(pokemon) {
     if (team.length < 6) {
@@ -122,23 +86,8 @@ function showTeam() {
 
 }
 
-/*
-async function searchPokemon(form) {
-    const formElements = form.elements;
-    const searchformElement = formElements.search;
-    const pokemonName = searchformElement.value;
-    searchformElement.value = '';  
 
-    const pokemon = await getPokemonDetails(pokemonName);
-    if (!pokemon) {
-        alert('Pokemon no trobat!');
-        return;
-    }
 
-    //showPokemonDetails(pokemonName);
-    return false; 
-}*/
-/*
 function searchPokemon(form) {
     const formElements = form.elements;                    
     searchformElement = formElements.search;               
@@ -146,7 +95,7 @@ function searchPokemon(form) {
     searchformElement.value = '';
 
     getPokemonDetails(PokemonName).then( async (pokemon) => {
-        if (!pokemon) {
+        if (!pokemon.ok) {
             alert('Pokemon not found');
             return;
         }
@@ -154,14 +103,15 @@ function searchPokemon(form) {
 
     });
     return false;
-}*/
+}
+
 
 function searchPokemon(form) {
     const formElements = form.elements;
-    const searchformElement = formElements.search;               
-    const pokemonName = searchformElement.value;
-    searchformElement.value = '';  
+    const searchformElement = formElements.search;
+    const pokemonName = searchformElement.value.trim(); 
+    searchformElement.value = ''; 
 
-    showPokemonDetails(pokemonName);
-    return false;
+    showPokemonDetails(pokemonName); 
+    return false; 
 }
