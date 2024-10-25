@@ -1,6 +1,6 @@
 const POKE_API_BASE_URL = 'https://pokeapi.co/api/v2/'
 const allPokemons = {};
-let team = [];
+const team = [];
 window.onload = async function() {
     showTeam();
     const pokemonsKanto = await getAllPokemonKanto();
@@ -99,7 +99,6 @@ async function searchPokemon(form){
 */
 
 function addToTeam(pokemon) {
-    showTeam();
     if (team.length < 6) {
         team.push(pokemon);
         alert(`${pokemon.name} afegit a l'equip!`);
@@ -107,6 +106,7 @@ function addToTeam(pokemon) {
     } else {
         alert('Equip ja te 6 Pokemons. No es poden afegir mes.');
     }
+    showTeam();
 }
 
 function showTeam() {
@@ -116,6 +116,25 @@ function showTeam() {
         teamContainer.innerHTML += '<p>No hi ha Pokemon en equip.</p>';
         return;
     }
-    
+    for (pokemon of team) {
+        teamContainer.innerHTML += `<p>${pokemon.name}</p>`;
+    }
 
+}
+
+
+async function searchPokemon(form) {
+    const formElements = form.elements;
+    const searchformElement = formElements.search;
+    const pokemonName = searchformElement.value;
+    searchformElement.value = '';  
+
+    const pokemon = await getPokemonDetails(pokemonName);
+    if (!pokemon) {
+        alert('Pokemon no trobat!');
+        return;
+    }
+
+    showPokemonDetails(pokemonName);
+    return false; 
 }
